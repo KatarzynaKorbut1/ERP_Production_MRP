@@ -9,6 +9,17 @@ Aplikacja jest oparta na architekturze REST.
 Początkowe założenia aplikacji
 jest to niewielki projekt, aby można było go ukończyć z najlepszymi praktykami, jednak do ciągłego rozwijania.
 zbudowanie rdzenia aplikacji, która wykonuje podstawowe operacje jak: dodaj, usuń, odejmij, zmodyfikuj, zaktualizuj, wyszukaj, filtruj, 
+
+Najważniejsze funkcjonalności aplikacji:
+Planowanie produkcji
+Receptury i marszruty
+Kontrola stanu surowcowego
+Zaopatrzenie
+Harmonogramowanie produkcji
+Zlecenia produkcyjne
+Rozliczanie produkcji
+Koszty
+
 Celem projektu jest wspólna praca, nauka i poszerzanie umiejętności.
 
 Wymagane aplikacje/narzędzia
