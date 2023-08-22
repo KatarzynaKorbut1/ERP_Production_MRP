@@ -26,7 +26,7 @@ Wymagane aplikacje/narzędzia
 Do uruchomienia aplikacji wymagana jest instalacja następujących narzędzi:
 
 IntelliJ IDEA / VSC / Eclipse,
-Java 17 LTS,
+Java 17,
 MySql Workbench / DBeaver,
 Git Bash,
 Maven 3.x,
@@ -40,7 +40,7 @@ Stack technologiczny
 
 Development
 Java 17 
-Spring Boot 2
+Spring Boot 3.1.1
 Spring Data
 Spring Security
 MySql (docker)
