@@ -27,15 +27,17 @@ public class ProductionOrder {
     private String orderNo;
 
     @Column(name = "status")
-    @NotEmpty
+   // @NotEmpty                         // nie puszcza z tą walidacją enuma na post
+    @Enumerated(EnumType.STRING)
     private StatusType statusType;
 
     @Column(name = "user_name")
+    @NotEmpty
     private String userName;
 
 
     @Column(name = "index_name")    // chcę pobierać to z listy
-    private String index_name;
+    private String indexName;
 
     @Column
     private Long quantity;
@@ -56,6 +58,14 @@ public class ProductionOrder {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate stopDate;
 
-
-
+    public ProductionOrder(String orderNo, StatusType statusType, String userName, String indexName, Long quantity, LocalDate requiredDate, LocalDate startDate, LocalDate stopDate) {
+        this.orderNo = orderNo;
+        this.statusType = statusType;
+        this.userName = userName;
+        this.indexName = indexName;
+        this.quantity = quantity;
+        this.requiredDate = requiredDate;
+        this.startDate = startDate;
+        this.stopDate = stopDate;
+    }
 }
