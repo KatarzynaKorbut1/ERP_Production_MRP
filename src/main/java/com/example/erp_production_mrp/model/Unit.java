@@ -1,16 +1,19 @@
 package com.example.erp_production_mrp.model;
 
 public enum Unit {
-    KG("kg"), M("m"), M2("m2"), M3("m3"), PCS("pcs");
 
-    private final String displayName;
 
-    Unit(String displayName){
-        this.displayName = displayName;
+    PIECES("pieces"), KILOGRAM("kg"),  LITRE("l"), METER("m"), SQUARE_METER("m2");
 
+    private final String typeOfUnit;
+
+    Unit(String typeOfUnit) {
+        this.typeOfUnit = typeOfUnit;
     }
 
-    public String getDisplayName(){
-        return displayName;
+    public String getTypeOfUnit() {
+        return typeOfUnit;
+
+
     }
 }
