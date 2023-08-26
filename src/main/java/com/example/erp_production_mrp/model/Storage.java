@@ -26,7 +26,8 @@ public class Storage {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long storageId;
-    @Column(name = "storage_name")
+
+    @Column(name = "storage_name",length = 15, unique = true, nullable = false)
     @NotEmpty
     private String storageName;
 
