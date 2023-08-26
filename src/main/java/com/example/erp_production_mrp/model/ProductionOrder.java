@@ -35,7 +35,7 @@ public class ProductionOrder {
 
 
     @Column(name = "index_name")    // chcę pobierać to z listy
-    String index_name;
+    private String index_name;
 
     @Column
     private Long quantity;
