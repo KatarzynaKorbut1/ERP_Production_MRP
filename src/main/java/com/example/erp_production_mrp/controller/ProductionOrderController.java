@@ -1,7 +1,7 @@
 package com.example.erp_production_mrp.controller;
 
 import com.example.erp_production_mrp.model.ProductionOrder;
-import com.example.erp_production_mrp.service.ProdOrderService;
+import com.example.erp_production_mrp.services.ProdOrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

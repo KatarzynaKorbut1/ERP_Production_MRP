@@ -1,4 +1,4 @@
-package com.example.erp_production_mrp.service;
+package com.example.erp_production_mrp.services;
 
 import com.example.erp_production_mrp.model.ProductionOrder;
 import com.example.erp_production_mrp.repositories.ProdOrderRepository;

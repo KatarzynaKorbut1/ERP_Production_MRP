@@ -2,7 +2,6 @@ package com.example.erp_production_mrp.controller;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
 import com.example.erp_production_mrp.services.ItemSupplierService;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +12,14 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class RestApiController {
+public class ItemController {
     ItemService itemService;
     ItemSupplierService itemSupplierService;
     ArrayList<Item> items;
 
 
 
-    public RestApiController(ItemService itemService, ItemSupplierService itemSupplierService) {
+    public ItemController(ItemService itemService, ItemSupplierService itemSupplierService) {
         this.itemService = itemService;
         this.itemSupplierService = itemSupplierService;
     }
