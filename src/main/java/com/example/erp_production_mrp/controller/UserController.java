@@ -1,7 +1,7 @@
 package com.example.erp_production_mrp.controller;
 
 import com.example.erp_production_mrp.model.User;
-import com.example.erp_production_mrp.services.UserServices;
+import com.example.erp_production_mrp.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserServices userService;
+    private final UserService userService;
 
-    public UserController(UserServices userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

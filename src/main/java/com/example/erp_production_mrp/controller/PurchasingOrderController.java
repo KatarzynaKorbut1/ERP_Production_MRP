@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class RestApiControllerPurchasingOrder {
+public class PurchasingOrderController {
     private final PurchasingOrderService purchasingOrderService;  //pole musi być finalne jak chcemy wstrzyknac przez konstruktor
 
-    public RestApiControllerPurchasingOrder(PurchasingOrderService purchasingOrderService) {
+    public PurchasingOrderController(PurchasingOrderService purchasingOrderService) {
         this.purchasingOrderService = purchasingOrderService;
     }
 @PostMapping("/purchasing_order")
