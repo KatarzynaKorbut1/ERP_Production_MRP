@@ -21,6 +21,6 @@ public class StockService {
         stockRepository.save(stock);
 }
 public void addItemToStock(@Min(1) @NonNull Long stockId, @Valid Stock stockToUpdate) {
-        Stock stock
+        Stock stock;
 }
 }

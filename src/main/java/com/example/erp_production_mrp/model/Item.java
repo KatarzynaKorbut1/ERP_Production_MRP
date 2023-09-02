@@ -43,8 +43,8 @@ public class Item {
     @ManyToMany(mappedBy = "items")
     private Set<Supplier> suppliers = new HashSet<>();
 
-
-
+    @ManyToMany(mappedBy = "items")
+    private Set<ItemSupplier> items = new HashSet<>();
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;
