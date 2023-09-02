@@ -2,7 +2,6 @@ package com.example.erp_production_mrp.controller;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
 import com.example.erp_production_mrp.services.ItemSupplierService;
-import com.example.erp_production_mrp.services.StructureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +18,6 @@ public class ItemController {
     private final ItemSupplierService itemSupplierService;
     ArrayList<Item> items;
 
-    StructureService structureService;
-
 
 
     public ItemController(ItemService itemService, ItemSupplierService itemSupplierService) {
@@ -29,6 +26,7 @@ public class ItemController {
     }
     @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
+        System.out.println("Jestem w createItemController");
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
@@ -50,16 +48,6 @@ public class ItemController {
         items.remove(id);
         return HttpStatus.NO_CONTENT;
     }
-
-    @GetMapping("/items")
-    public ResponseEntity getItems(){
-        return new ResponseEntity<>(itemService.getItems(), HttpStatus.OK);
-    }
-
-
-
-
-
 
 
 }

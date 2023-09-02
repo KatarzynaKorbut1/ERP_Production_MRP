@@ -4,6 +4,7 @@ import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
