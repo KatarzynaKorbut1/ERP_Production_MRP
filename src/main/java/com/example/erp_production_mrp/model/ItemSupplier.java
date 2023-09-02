@@ -17,8 +17,6 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-                    property = "supplier_id")
 public class ItemSupplier {
 
     @Id

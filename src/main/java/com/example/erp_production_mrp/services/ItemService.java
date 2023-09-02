@@ -22,6 +22,7 @@ public class ItemService {
         return Optional.of(itemRepository.findById(id).orElse(null));
     }
     public Optional<Item> createItem(Item item) {
+        System.out.println("Jestem createItem w serwisie");
         return Optional.of(itemRepository.save(item));
     }
 
@@ -29,12 +30,11 @@ public class ItemService {
         return itemRepository.findAll();
     }
     public Item getItem (Long id) {
-        return itemRepository.findById(id).get();
-    }
-    public void saveItem(Item item) {
-        itemRepository.save(item);
+        return itemRepository.findById(id).orElse(null);
     }
 
 
-
+    public void saveItem(Item itemToSet) {
+        itemRepository.save(itemToSet);
+    }
 }

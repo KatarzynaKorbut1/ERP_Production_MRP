@@ -26,6 +26,7 @@ public class ItemController {
     }
     @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
+        System.out.println("Jestem w createItemController");
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
