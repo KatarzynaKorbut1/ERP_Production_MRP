@@ -3,10 +3,13 @@ package com.example.erp_production_mrp.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import lombok.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +34,7 @@ public class Stock {
     @Column (name = "index_name")
     private String index_name;
 
-    @Column (name = "quantitry")
+    @Column (name = "quantity")
     private Long quantity;
 
 

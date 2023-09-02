@@ -4,6 +4,7 @@ import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,15 @@ public class ItemService {
         return Optional.of(itemRepository.save(item));
     }
 
-    public void deleteItemById(Long itemId) {
-        itemRepository.deleteById(itemId);
+    public List<Item> getAll() {
+        return itemRepository.findAll();
+    }
+    public Item getItem (Long id) {
+        return itemRepository.findById(id).orElse(null);
     }
 
+
+    public void saveItem(Item itemToSet) {
+        itemRepository.save(itemToSet);
+    }
 }

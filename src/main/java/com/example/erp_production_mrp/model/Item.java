@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.swing.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -38,6 +40,11 @@ public class Item {
     @Column(name="index_number", length = 16, unique = true, nullable = false)
     @NotEmpty
     private String indexName;
+    @ManyToMany(mappedBy = "items")
+    private Set<Supplier> suppliers = new HashSet<>();
+
+
+
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;
