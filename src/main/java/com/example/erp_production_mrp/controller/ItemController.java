@@ -8,13 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 @Slf4j
 public class ItemController {
-    ItemService itemService;
-    ItemSupplierService itemSupplierService;
+    private final ItemService itemService;
+    private final ItemSupplierService itemSupplierService;
     ArrayList<Item> items;
 
 
@@ -28,6 +29,11 @@ public class ItemController {
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
+
+    @GetMapping("/items")
+    public ResponseEntity<List<Item>> getItems() {
+        return new ResponseEntity<>(itemService.getAll(), HttpStatus.OK);
+    }
     @GetMapping("/item/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable Long id) {
         if (itemService.getItemById(id).isPresent()) {
@@ -37,8 +43,8 @@ public class ItemController {
     }
 
     @DeleteMapping("/item/{id}")
-    public HttpStatus deleteItemById(@PathVariable Long id) {
-       items.remove(id);
+    public HttpStatus deleteItemById(@PathVariable int id) {
+        items.remove(id);
         return HttpStatus.NO_CONTENT;
     }
 
