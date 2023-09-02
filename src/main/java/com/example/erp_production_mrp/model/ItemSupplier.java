@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.time.LocalDate;
 import java.util.Set;
 
-import static jakarta.persistence.CascadeType.MERGE;
 
 @Entity
 @Getter
