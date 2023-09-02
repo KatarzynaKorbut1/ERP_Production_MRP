@@ -26,4 +26,18 @@ public class UserService {
     public User getUserById(long userId){
         return userRepository.findById(userId).get();
     }
+
+    // method to change
+    public User updateUserById(long userId) {
+        var user = userRepository.findById(userId).get();
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setPassword(user.getPassword());
+        userRepository.save(user);
+        return user;
+
+//        User user = userRepository.findById(userId).get();
+//        user.setUsername(user.getUsername());
+//        return user;
+    }
 }
