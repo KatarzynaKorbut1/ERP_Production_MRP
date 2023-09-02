@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.swing.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,6 +20,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
+
 
     @Enumerated(EnumType.STRING)
     private TypeOfItem typeOfItem;
@@ -38,6 +41,10 @@ public class Item {
     @Column(name="index_number", length = 16, unique = true, nullable = false)
     @NotEmpty
     private String indexName;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Set<Structure> structures = new HashSet<>();
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;

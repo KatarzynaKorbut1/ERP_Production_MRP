@@ -7,5 +7,6 @@ import java.util.List;
 
 
 public interface ProdOrderRepository extends JpaRepository<ProductionOrder, Long> {
+
 }
 

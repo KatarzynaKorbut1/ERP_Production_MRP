@@ -4,6 +4,9 @@ import com.example.erp_production_mrp.model.ProductionOrder;
 import com.example.erp_production_mrp.repositories.ProdOrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +29,8 @@ public class ProdOrderService {
         prodOrderRepository.save(productionOrder);
     }
 
-    public ProductionOrder getProductionOrderById(Long id) {
+
+    public ProductionOrder getProductionOrderById(@Min(1) @NotNull Long id) {
         return prodOrderRepository.findById(id).orElse(null);
 
     }
@@ -42,4 +46,20 @@ public class ProdOrderService {
     }
 
 
+
+    public void updateQuantityById(@Min(1) @NotNull Long poId, @Valid ProductionOrder productionOrderToUpdate) {
+
+        ProductionOrder productionOrder = getProductionOrderById(poId);
+        productionOrder.setQuantity(productionOrderToUpdate.getQuantity());
+        prodOrderRepository.save(productionOrder);
+
+    }
+
+    public void updateStatusById(@Min(1) @NotNull Long poId, @Valid ProductionOrder productionOrderToUpdate) {
+
+        ProductionOrder productionOrder = getProductionOrderById(poId);
+        productionOrder.setStatusType(productionOrderToUpdate.getStatusType());
+        prodOrderRepository.save(productionOrder);
+
+    }
 }

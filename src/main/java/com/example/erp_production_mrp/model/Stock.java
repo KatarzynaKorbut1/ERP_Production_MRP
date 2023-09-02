@@ -31,13 +31,11 @@ public class Stock {
     @Column (name = "index_name")
     private String index_name;
 
-    @Column (name = "quantitry")
+    @Column (name = "quantity")
     private Long quantity;
 
 
     @ManyToMany(mappedBy = "stockSet")
     private Set<Storage> storageSet = new HashSet<>();
-
-
 
 }
