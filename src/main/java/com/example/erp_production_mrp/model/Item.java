@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -46,6 +47,9 @@ public class Item {
 
     @ManyToMany(mappedBy = "items")
     private Set<ItemSupplier> items = new HashSet<>();
+
+    @OneToMany
+    private Set<Structure> structures;
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName, Set<ItemSupplier> items) {
         this.typeOfItem = typeOfItem;
