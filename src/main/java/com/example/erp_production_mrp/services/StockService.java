@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Min;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class StockService {
     StockRepository stockRepository;
@@ -21,6 +23,7 @@ public class StockService {
         stockRepository.save(stock);
 }
 public void addItemToStock(@Min(1) @NonNull Long stockId, @Valid Stock stockToUpdate) {
-        Stock stock;
+
+        Set<Stock> stocks = ;
 }
 }
