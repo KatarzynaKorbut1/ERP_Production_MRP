@@ -1,7 +1,5 @@
 package com.example.erp_production_mrp.controller;
 import com.example.erp_production_mrp.model.Item;
-import com.example.erp_production_mrp.model.Structure;
-import com.example.erp_production_mrp.repositories.StructureRepository;
 import com.example.erp_production_mrp.services.ItemService;
 import com.example.erp_production_mrp.services.ItemSupplierService;
 import com.example.erp_production_mrp.services.StructureService;
@@ -11,15 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 @Slf4j
 public class ItemController {
-    ItemService itemService;
-    ItemSupplierService itemSupplierService;
+    private final ItemService itemService;
+    private final ItemSupplierService itemSupplierService;
     ArrayList<Item> items;
 
     StructureService structureService;
@@ -35,6 +32,11 @@ public class ItemController {
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
+
+    @GetMapping("/items")
+    public ResponseEntity<List<Item>> getItems() {
+        return new ResponseEntity<>(itemService.getAll(), HttpStatus.OK);
+    }
     @GetMapping("/item/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable Long id) {
         if (itemService.getItemById(id).isPresent()) {
@@ -43,11 +45,9 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
-
     @DeleteMapping("/item/{id}")
-    public HttpStatus deleteItemById(@PathVariable Long id) {
-       items.remove(id);
+    public HttpStatus deleteItemById(@PathVariable int id) {
+        items.remove(id);
         return HttpStatus.NO_CONTENT;
     }
 
