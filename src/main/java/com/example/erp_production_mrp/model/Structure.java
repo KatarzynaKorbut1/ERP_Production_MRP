@@ -1,5 +1,4 @@
 package com.example.erp_production_mrp.model;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,3 +35,4 @@ public class Structure {
     private Long materialConsumptionStandard;
 
 }
+

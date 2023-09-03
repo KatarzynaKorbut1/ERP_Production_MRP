@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 @Entity
 @Getter
 @Setter
@@ -44,6 +43,11 @@ public class Item {
     @Column(name="index_number", length = 19, unique = true, nullable = false)
     @NotEmpty
     private String indexName;
+    @ManyToMany(mappedBy = "items")
+    private Set<Supplier> suppliers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "items")
+    private Set<ItemSupplier> items = new HashSet<>();
 
     @ManyToMany(mappedBy = "items")
     private Set<ItemSupplier> items = new HashSet<>();
