@@ -1,7 +1,8 @@
 package com.example.erp_production_mrp.controller;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
-import com.example.erp_production_mrp.services.ItemSupplierService;
+//import com.example.erp_production_mrp.services.ItemSupplierService;
+//import com.example.erp_production_mrp.services.ItemSupplierService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,18 +16,19 @@ import java.util.List;
 @Slf4j
 public class ItemController {
     private final ItemService itemService;
-    private final ItemSupplierService itemSupplierService;
+//    private final ItemSupplierService itemSupplierService;
     ArrayList<Item> items;
 
-
-
-    public ItemController(ItemService itemService, ItemSupplierService itemSupplierService) {
+    public ItemController(ItemService itemService) {
         this.itemService = itemService;
-        this.itemSupplierService = itemSupplierService;
     }
+
+//    public ItemController(ItemService itemService, ItemSupplierService itemSupplierService) {
+//        this.itemService = itemService;
+//        this.itemSupplierService = itemSupplierService;
+//    }
     @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        System.out.println("Jestem w createItemController");
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
@@ -42,6 +44,8 @@ public class ItemController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+//    @GetMapping("/items/type")
+//    public ResponseEntity<Item> getItemByType(@PathVariable )
 
     @DeleteMapping("/item/{id}")
     public HttpStatus deleteItemById(@PathVariable int id) {

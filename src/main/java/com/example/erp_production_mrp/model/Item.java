@@ -7,8 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
 
 @Entity
 @Getter
@@ -43,19 +43,12 @@ public class Item {
     @Column(name="index_number", length = 19, unique = true, nullable = false)
     @NotEmpty
     private String indexName;
-    @ManyToMany(mappedBy = "items")
-    private Set<Supplier> suppliers = new HashSet<>();
 
-    @ManyToMany(mappedBy = "items")
-    private Set<ItemSupplier> items = new HashSet<>();
-
-    @ManyToMany(mappedBy = "items")
-    private Set<ItemSupplier> items = new HashSet<>();
 
     @OneToMany
     private Set<Structure> structures;
 
-    public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName, Set<ItemSupplier> items) {
+    public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;
         this.unit = unit;
         this.indexDescription = indexDescription;
@@ -63,6 +56,6 @@ public class Item {
         this.cost = cost;
         this.partNumber = partNumber;
         this.indexName = indexName;
-        this.items = items;
+
     }
 }
