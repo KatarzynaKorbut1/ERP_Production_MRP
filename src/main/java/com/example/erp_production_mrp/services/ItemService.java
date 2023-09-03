@@ -11,12 +11,17 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
-    private final ItemSupplierService itemSupplierService;
+//    private final ItemSupplierService itemSupplierService;
 
-    public ItemService(ItemRepository itemRepository, ItemSupplierService itemSupplierService) {
+    public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.itemSupplierService = itemSupplierService;
     }
+
+
+//    public ItemService(ItemRepository itemRepository, ItemSupplierService itemSupplierService) {
+//        this.itemRepository = itemRepository;
+//        this.itemSupplierService = itemSupplierService;
+//    }
 
     public Optional<Item> getItemById(Long id) {
         return Optional.of(itemRepository.findById(id).orElse(null));
