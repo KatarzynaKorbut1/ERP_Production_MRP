@@ -2,20 +2,20 @@ package com.example.erp_production_mrp.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+@Setter
 @Entity
 @NoArgsConstructor
 @Getter
-@Setter
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false, updatable = false)
     private Long userId;
     @NotEmpty
     private String username;

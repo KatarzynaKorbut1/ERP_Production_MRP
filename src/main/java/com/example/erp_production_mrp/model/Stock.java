@@ -41,6 +41,4 @@ public class Stock {
     @ManyToMany(mappedBy = "stockSet")
     private Set<Storage> storageSet = new HashSet<>();
 
-
-
 }

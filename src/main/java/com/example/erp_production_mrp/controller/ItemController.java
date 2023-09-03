@@ -26,6 +26,7 @@ public class ItemController {
     }
     @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
+        System.out.println("Jestem w createItemController");
         itemService.createItem(item);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
@@ -43,8 +44,8 @@ public class ItemController {
     }
 
     @DeleteMapping("/item/{id}")
-    public HttpStatus deleteItemById(@PathVariable Long id) {
-       items.remove(id);
+    public HttpStatus deleteItemById(@PathVariable int id) {
+        items.remove(id);
         return HttpStatus.NO_CONTENT;
     }
 
