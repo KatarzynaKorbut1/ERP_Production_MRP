@@ -1,13 +1,13 @@
 package com.example.erp_production_mrp.model;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import com.example.erp_production_mrp.serializer.StructureSerializer;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 
 @Entity
@@ -15,7 +15,8 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-
+@AllArgsConstructor
+@JsonSerialize(using = StructureSerializer.class)
 public class Structure {
 
 
@@ -23,16 +24,38 @@ public class Structure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long structureId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "structure_id")
-    @JoinTable(name = "structure_item",
-    joinColumns = @JoinColumn(name = "structure_id"),
-    inverseJoinColumns = @JoinColumn(name = "item_id"))
-    private List<Item> components;
-//    private Set<Item> components = new HashSet<>();
+    private Long version;
 
-    @Column
-    private Long materialConsumptionStandard;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+
+    private LocalDate startDate;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+
+    private LocalDate stopDate;
+
+//    @ManyToMany
+//    @JoinTable(name = "structure_component",
+//            joinColumns = @JoinColumn(name = "structure_id"),
+//            inverseJoinColumns = @JoinColumn(name = "component_id"))
+//    private List<Component> components = new ArrayList<>();
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "structure_component_list_id")
+    private StructureComponentList structureComponentList;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @Enumerated(EnumType.STRING)
+    private StatusType statusType;
+
+//    public Structure(String s, int i) {
+//    }
+
+
 
 }
 

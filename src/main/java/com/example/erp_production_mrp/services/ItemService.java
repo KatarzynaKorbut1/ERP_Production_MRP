@@ -1,11 +1,14 @@
 package com.example.erp_production_mrp.services;
 
+import com.example.erp_production_mrp.dto.ItemDTO;
+//import com.example.erp_production_mrp.mapper.ItemModelMapper;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class ItemService {
@@ -33,6 +36,8 @@ public class ItemService {
     public List<Item> getAll() {
         return itemRepository.findAll();
     }
+
+
     public Item getItem (Long id) {
         return itemRepository.findById(id).orElse(null);
     }
@@ -41,4 +46,7 @@ public class ItemService {
     public void saveItem(Item itemToSet) {
         itemRepository.save(itemToSet);
     }
+//    public List<ItemDTO> getItemJust(){
+//        return itemRepository.findAll().stream().map(ItemModelMapper::mapItemEntityToItemDTO).toList();
+//    }
 }

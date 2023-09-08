@@ -1,12 +1,13 @@
 package com.example.erp_production_mrp.controller;
 
-import com.example.erp_production_mrp.exception.ResourceNotFoundException;
 import com.example.erp_production_mrp.model.ProductionOrder;
-import com.example.erp_production_mrp.repositories.ProdOrderRepository;
 import com.example.erp_production_mrp.services.ProdOrderService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class ProductionOrderController {
     }
 
     @GetMapping("/prodOrder/{id}")
-    public ResponseEntity<ProductionOrder> getOrderProductionById(@Min(1) @NotNull @PathVariable(value = "id") Long poId){
+    public ResponseEntity<ProductionOrder> getOrderProductionById(@Min(1) @NotNull @PathVariable(value = "id") Long poId) {
         return new ResponseEntity<>(prodOrderService.getProductionOrderById(poId), HttpStatus.OK);
 
     }
@@ -54,9 +55,9 @@ public class ProductionOrderController {
         }
     }
 
-    //nie DZIAŁA
+
     @PatchMapping("/prodOrder/updateQuantity/{id}")
-    public ResponseEntity<ProductionOrder> updateQuantityOfProductionOrder(@Valid @RequestBody ProductionOrder updatedQuantity,@Min(1) @NotNull @PathVariable(value = "id") Long poId) {
+    public ResponseEntity<ProductionOrder> updateQuantityOfProductionOrder(@Valid @RequestBody ProductionOrder updatedQuantity, @Min(1) @NotNull @PathVariable(value = "id") Long poId) {
         prodOrderService.updateQuantityById(poId, updatedQuantity);
         return ResponseEntity.ok(updatedQuantity);
     }
@@ -67,11 +68,22 @@ public class ProductionOrderController {
         return ResponseEntity.ok(updatedStatus);
     }
 
-
-
-
-
-
+    //metoda do responsywnego przeglądania strony
+//    @GetMapping("/prodOrder/date")
+//    public ResponseEntity<Page<ProductionOrder>> getData(@RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "1") int size){
+//        List<ProductionOrder> productionOrderList = getAllProductionsOrders().getBody();
+//
+//        int totalSize = productionOrderList.size();
+//        int startIndex = page + size;
+//        int endIndex = Math.min(startIndex + size, totalSize);
+//
+//        List<ProductionOrder> pageContent = productionOrderList.subList(startIndex, endIndex);
+//
+//        Page<ProductionOrder> productionOrder = new PageImpl<>(pageContent, PageRequest.of(page, size), totalSize);
+//        return ResponseEntity.ok().body(productionOrder);
+//
+//
+//    }
 
 
 }

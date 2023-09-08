@@ -1,9 +1,11 @@
 package com.example.erp_production_mrp.controller;
+
+import com.example.erp_production_mrp.dto.ItemStructureDTO;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
-//import com.example.erp_production_mrp.services.ItemSupplierService;
-//import com.example.erp_production_mrp.services.ItemSupplierService;
+import com.example.erp_production_mrp.services.ItemStructureService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +17,18 @@ import java.util.List;
 @RequestMapping("/api")
 @Slf4j
 public class ItemController {
+
+    @Autowired
+    private ItemStructureService itemStructureService;
     private final ItemService itemService;
-//    private final ItemSupplierService itemSupplierService;
+
     ArrayList<Item> items;
 
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
-//    public ItemController(ItemService itemService, ItemSupplierService itemSupplierService) {
-//        this.itemService = itemService;
-//        this.itemSupplierService = itemSupplierService;
-//    }
+
     @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         itemService.createItem(item);
@@ -37,6 +39,7 @@ public class ItemController {
     public ResponseEntity<List<Item>> getItems() {
         return new ResponseEntity<>(itemService.getAll(), HttpStatus.OK);
     }
+
     @GetMapping("/item/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable Long id) {
         if (itemService.getItemById(id).isPresent()) {
@@ -44,6 +47,7 @@ public class ItemController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 //    @GetMapping("/items/type")
 //    public ResponseEntity<Item> getItemByType(@PathVariable )
 
@@ -53,5 +57,22 @@ public class ItemController {
         return HttpStatus.NO_CONTENT;
     }
 
+    @GetMapping("itemStructures/{itemId}")
+    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
+        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
+        if (itemStructureDTO == null) {
+            // Obsłuż brak znalezienia przedmiotu
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(itemStructureDTO);
+    }
+
+
 
 }
+
+
+
+
+
+

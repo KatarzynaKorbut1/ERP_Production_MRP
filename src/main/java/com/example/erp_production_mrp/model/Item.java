@@ -1,12 +1,15 @@
 package com.example.erp_production_mrp.model;
+import com.example.erp_production_mrp.serializer.ItemSerializer;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,7 +18,8 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Item {
+@JsonSerialize(using = ItemSerializer.class)
+public class Item{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,8 +49,21 @@ public class Item {
     private String indexName;
 
 
-    @OneToMany
-    private Set<Structure> structures;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")   //tutaj było "item" ale zmieniłam w celu sprawdzenia nie działającej bazy
+    private List<Structure> structures = new ArrayList<>();
+
+    @ManyToMany(/*cascade = {CascadeType.MERGE, CascadeType.PERSIST},*/
+            fetch = FetchType.LAZY)
+
+    //to poniżej wygeneruje nam automatycznie tabelę item_supplier
+    @JoinTable(name = "item_supplier",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "supplier_id"))
+
+    private Set<Supplier> suppliers;
+
+
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;
@@ -58,4 +75,6 @@ public class Item {
         this.indexName = indexName;
 
     }
+
+
 }
