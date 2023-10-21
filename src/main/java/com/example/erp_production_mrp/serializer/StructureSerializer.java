@@ -14,17 +14,9 @@ public class StructureSerializer extends JsonSerializer<Structure> {
         jsonGenerator.writeNumberField("structureId", structure.getStructureId());
         jsonGenerator.writeStringField("startDate", String.valueOf(structure.getStartDate()));
         jsonGenerator.writeStringField("stopDate", String.valueOf(structure.getStopDate()));
-
         jsonGenerator.writeNumberField("version", structure.getVersion());
         jsonGenerator.writeStringField("statusType", String.valueOf(structure.getStatusType()));
         jsonGenerator.writeEndObject();
 
     }
 }
-//        this.structureId = structureId;
-//        this.version = version;
-//        this.startDate = startDate;
-//        this.stopDate = stopDate;
-//        this.structureComponentList = structureComponentList;
-//        this.item = item;
-//        this.statusType = statusType;

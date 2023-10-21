@@ -17,7 +17,6 @@ public class ItemSerializer extends JsonSerializer<Item> {
         jsonGenerator.writeNumberField("quantity", item.getQuantity());
         jsonGenerator.writeNumberField("cost", item.getCost());
         jsonGenerator.writeStringField("indexName", item.getIndexName());
-        jsonGenerator.writeStringField("indexName", item.getIndexName());
         jsonGenerator.writeStringField("indexDescription", item.getIndexDescription());
         jsonGenerator.writeStringField("unit", String.valueOf(item.getUnit()));
         jsonGenerator.writeStringField("typeOfItem", String.valueOf(item.getTypeOfItem()));

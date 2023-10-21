@@ -9,4 +9,7 @@ import java.util.List;
 public interface StructureRepository extends JpaRepository<Structure, Long> {
 
     List<Structure> findByItem(Item item);
+
+
+    List<Structure> findAllByItem(Item item);
 }

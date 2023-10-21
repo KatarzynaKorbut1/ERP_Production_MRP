@@ -1,14 +1,11 @@
 package com.example.erp_production_mrp.model;
 import com.example.erp_production_mrp.serializer.ItemSerializer;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,12 +20,14 @@ public class Item{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
+    @Column(name = "item_id", updatable = false)
     private Long itemId;
+
 
     @Enumerated(EnumType.STRING)
     private TypeOfItem typeOfItem;
 
+    @Column(updatable = false)
     @Enumerated(EnumType.STRING)
     private Unit unit;
 
@@ -41,16 +40,16 @@ public class Item{
     @Column(name = "cost")
     private Double cost;
 
-    @Column(name = "part_number")
+    @Column(name = "part_number", updatable = false)
     private String partNumber;
 
-    @Column(name="index_number", length = 19, unique = true, nullable = false)
+    @Column(name="index_number", length = 19, unique = true, nullable = false, updatable = false)
     @NotEmpty
     private String indexName;
 
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")   //tutaj było "item" ale zmieniłam w celu sprawdzenia nie działającej bazy
+    @JoinColumn(name = "item_id", updatable = false)   //tutaj było "item" ale zmieniłam w celu sprawdzenia nie działającej bazy
     private List<Structure> structures = new ArrayList<>();
 
     @ManyToMany(/*cascade = {CascadeType.MERGE, CascadeType.PERSIST},*/
@@ -76,5 +75,11 @@ public class Item{
 
     }
 
+    public List<Structure> getStructures() {
+        return structures;
+    }
 
+    public void setStructures(List<Structure> structures) {
+        this.structures = structures;
+    }
 }

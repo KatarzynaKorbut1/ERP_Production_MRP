@@ -1,7 +1,6 @@
 package com.example.erp_production_mrp.model;
 
 import com.example.erp_production_mrp.serializer.StructureSerializer;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,6 +33,7 @@ public class Structure {
 
     private LocalDate stopDate;
 
+
 //    @ManyToMany
 //    @JoinTable(name = "structure_component",
 //            joinColumns = @JoinColumn(name = "structure_id"),
@@ -45,6 +45,7 @@ public class Structure {
     @JoinColumn(name = "structure_component_list_id")
     private StructureComponentList structureComponentList;
 
+    //zablokować możliwość usunięcia pozycji gdy jest struktura
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
@@ -52,8 +53,7 @@ public class Structure {
     @Enumerated(EnumType.STRING)
     private StatusType statusType;
 
-//    public Structure(String s, int i) {
-//    }
+
 
 
 

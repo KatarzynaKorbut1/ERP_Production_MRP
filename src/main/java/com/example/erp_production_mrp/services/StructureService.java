@@ -41,7 +41,7 @@ public class StructureService {
     //getStructureByItemId
 
 
-    public List<Structure> findByItemId(Long itemId) {
+    public List<Structure> findStructuresByItemId(Long itemId) {
         if (itemRepository.findById(itemId).isPresent()) {
             return itemRepository.findById(itemId).get().getStructures();
         }

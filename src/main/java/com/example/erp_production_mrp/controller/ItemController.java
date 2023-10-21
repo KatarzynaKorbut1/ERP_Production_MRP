@@ -1,6 +1,5 @@
 package com.example.erp_production_mrp.controller;
 
-import com.example.erp_production_mrp.dto.ItemStructureDTO;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
 import com.example.erp_production_mrp.services.ItemStructureService;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -57,15 +57,26 @@ public class ItemController {
         return HttpStatus.NO_CONTENT;
     }
 
-    @GetMapping("itemStructures/{itemId}")
-    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
-        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
-        if (itemStructureDTO == null) {
-            // Obsłuż brak znalezienia przedmiotu
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(itemStructureDTO);
-    }
+//    @GetMapping("/itemStructures/{itemId}")
+//    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
+//        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
+//        if (itemStructureDTO == null) {
+//            // Obsłuż brak znalezienia przedmiotu
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(itemStructureDTO);
+//    }
+
+//        @GetMapping("/itemStructures/{itemId}")
+//    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
+//        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
+//        if (itemStructureDTO == null) {
+//            // Obsłuż brak znalezienia przedmiotu
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(itemStructureDTO);
+//    }
+//
 
 
 

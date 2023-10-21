@@ -20,3 +20,16 @@
 ////                .orElseThrow(() -> new RuntimeException("Either item or structure not found!"));
 ////    }
 //}
+
+//działa ale nie na recordach
+//public ItemStructureDTO getItemsWithStructures(){
+//    List<Item> item = itemRepository.findAll();
+//    if (item == null){
+//        return null;
+//    }
+//    List<Structure> structures = structureRepository.findByItem((Item) item);
+//    ItemStructureDTO itemStructureDTO = new ItemStructureDTO();
+//    assert item !=null;
+//    itemStructureDTO.setIndexName(item);
+//    itemStructureDTO.setStructures(structures);
+//    return itemStructureDTO;
