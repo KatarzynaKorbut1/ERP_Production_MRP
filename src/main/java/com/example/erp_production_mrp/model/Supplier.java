@@ -35,6 +35,8 @@ public class Supplier {
 //    Account account;
     @Enumerated(EnumType.STRING)
     private Tax tax;
+
+
     @Column
     @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)

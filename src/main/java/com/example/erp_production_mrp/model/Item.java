@@ -1,12 +1,12 @@
 package com.example.erp_production_mrp.model;
+import com.example.erp_production_mrp.serializer.ItemSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,16 +15,19 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Item {
+@JsonSerialize(using = ItemSerializer.class)
+public class Item{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
+    @Column(name = "item_id", updatable = false)
     private Long itemId;
+
 
     @Enumerated(EnumType.STRING)
     private TypeOfItem typeOfItem;
 
+    @Column(updatable = false)
     @Enumerated(EnumType.STRING)
     private Unit unit;
 
@@ -37,16 +40,29 @@ public class Item {
     @Column(name = "cost")
     private Double cost;
 
-    @Column(name = "part_number")
+    @Column(name = "part_number", updatable = false)
     private String partNumber;
 
-    @Column(name="index_number", length = 19, unique = true, nullable = false)
+    @Column(name="index_number", length = 19, unique = true, nullable = false, updatable = false)
     @NotEmpty
     private String indexName;
 
 
-    @OneToMany
-    private Set<Structure> structures;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id", updatable = false)   //tutaj było "item" ale zmieniłam w celu sprawdzenia nie działającej bazy
+    private List<Structure> structures = new ArrayList<>();
+
+    @ManyToMany(/*cascade = {CascadeType.MERGE, CascadeType.PERSIST},*/
+            fetch = FetchType.LAZY)
+
+    //to poniżej wygeneruje nam automatycznie tabelę item_supplier
+    @JoinTable(name = "item_supplier",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "supplier_id"))
+
+    private Set<Supplier> suppliers;
+
+
 
     public Item(TypeOfItem typeOfItem, Unit unit, String indexDescription, Long quantity, Double cost, String partNumber, String indexName) {
         this.typeOfItem = typeOfItem;
@@ -58,4 +74,13 @@ public class Item {
         this.indexName = indexName;
 
     }
+
+    public List<Structure> getStructures() {
+        return structures;
+    }
+
+//    public void setStructures(List<Structure> structures) {
+//        this.structures = structures;
+//    }
+
 }
