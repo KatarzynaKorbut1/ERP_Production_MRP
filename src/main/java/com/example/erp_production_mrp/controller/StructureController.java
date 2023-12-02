@@ -1,6 +1,9 @@
 package com.example.erp_production_mrp.controller;
 
+import com.example.erp_production_mrp.controller.dto.ItemDTO;
 import com.example.erp_production_mrp.controller.dto.ItemStructureDTO;
+import com.example.erp_production_mrp.controller.dto.StructureDTO;
+import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.model.Structure;
 import com.example.erp_production_mrp.services.ItemService;
 import com.example.erp_production_mrp.services.ItemStructureService;
@@ -9,8 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -100,17 +105,41 @@ public class StructureController {
 //    }
 
 
+//    localhost:8080/api/assign?itemId=1&structureId=1    - gdy obydwa są @RequestParam
+
     //nie działa
     @PutMapping("/assign")
     public ResponseEntity assignStructureToItem(@RequestParam Long itemId,      // powiązqanie specjalizacji z vetem
                                                 @RequestParam Long structureId) {
 
-        //Optional<Item> item = itemService.getItemById(itemId);
-
-List<Structure> structuresFromItem = structureService.findStructuresByItemId(itemId);
-                Structure structureToSet = structureService.getStructure(structureId);
-                structuresFromItem.add(structureToSet);
+       // List<ItemStructureDTO> item = itemService.getItemById(itemId);
+        //List<ItemDTO> item = itemService.getItemByItemIdDTO(itemId);
+        Item item = itemService.getItem(itemId);
+        //ItemDTO item = itemService.getItemByItemIdDTO(itemId);
+        System.out.println(Arrays.asList(item));
+ //       List<StructureDTO> structuresDTOFromItem = structureService.findStructureDTOByItemId(itemId);
+        List<Structure> structureFromItem = item.getStructures();
+ //               structureService.findStructuresByItemId(itemId);
+  //      System.out.println(Arrays.asList(structuresDTOFromItem));
+        System.out.println(Arrays.asList((structureFromItem)));
+ //       StructureDTO structureToSet = structureService.getStructureDTO(structureId);
+        Structure structureToSet = structureService.getStructure(structureId);
+ //       structuresDTOFromItem.add(structureToSet);
+ //       System.out.println(Arrays.asList(structuresDTOFromItem));
         System.out.println(Arrays.asList(structureToSet));
+
+        structureFromItem.add(structureToSet);
+        System.out.println(Arrays.asList(structureFromItem));
+
+
+ //       itemService.createItem(item);
+//        itemService.saveItem(item);
+        System.out.println(Arrays.asList(item));
+
+//List<Structure> structuresFromItem = structureService.findStructuresByItemId(itemId);
+//                Structure structureToSet = structureService.getStructure(structureId);
+//                structuresFromItem.add(structureToSet);
+//        System.out.println(Arrays.asList(structureToSet));
 
 //                List<Structure> updatedStructures = item.get().getStructures();
 //                updatedStructures.add(structureToSet);

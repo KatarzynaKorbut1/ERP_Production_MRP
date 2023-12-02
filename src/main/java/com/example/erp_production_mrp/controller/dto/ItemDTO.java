@@ -6,7 +6,9 @@ import com.example.erp_production_mrp.model.Unit;
 import java.util.List;
 
 public record ItemDTO(TypeOfItem typeOfItem, Unit unit, String indexDescription,
-                      Long quantity, Double cost, String partNumber, String indexName){
+                      Long quantity, Double cost, String partNumber, String indexName, List<StructureDTO> structures){
+
+
 
 
     public static final class ItemDTOBuilder {
@@ -66,9 +68,12 @@ public record ItemDTO(TypeOfItem typeOfItem, Unit unit, String indexDescription,
             return this;
         }
 
+
         public ItemDTO build() {
-            return new ItemDTO(typeOfItem, unit, indexDescription, quantity, cost, partNumber, indexName);
+            return new ItemDTO(typeOfItem, unit, indexDescription, quantity, cost, partNumber, indexName, structures);
         }
+
+
     }
 }
 

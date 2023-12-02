@@ -1,5 +1,8 @@
 package com.example.erp_production_mrp.services;
 
+import com.example.erp_production_mrp.controller.dto.ItemStructureDTO;
+import com.example.erp_production_mrp.controller.dto.StructureDTO;
+import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.model.Structure;
 import com.example.erp_production_mrp.repositories.ItemRepository;
 import com.example.erp_production_mrp.repositories.StructureRepository;
@@ -14,6 +17,7 @@ public class StructureService {
 
     private StructureRepository structureRepository;
     private ItemRepository itemRepository;
+    private StructureService itemStructureRepository;
 
     public StructureService(StructureRepository structureRepository, ItemRepository itemRepository) {
         this.structureRepository = structureRepository;
@@ -23,6 +27,10 @@ public class StructureService {
     public Structure getStructure(Long structureId) {
         return structureRepository.findById(structureId).orElse(null);
 
+    }
+
+    public StructureDTO getStructureDTO(Long structureId) {
+        return structureRepository.findByStructureId(structureId);
     }
 
     public void saveStructure(Structure structureToSet) {
@@ -48,6 +56,14 @@ public class StructureService {
         return new ArrayList<>();
     }
 
+    public List<StructureDTO> findStructureDTOByItemId(Long itemId){
+        List <StructureDTO> structureDTO = structureRepository.findAllByItem_ItemId(itemId);
+       if (structureDTO.stream().findAny().isPresent()) {
+           return structureDTO;
+       }
+       return new ArrayList<>();
+
+
 //    public void saveStructure(Structure structureToSet) {
 //    }
 
@@ -69,5 +85,5 @@ public class StructureService {
 //        return new ResponseEntity(HttpStatus.CREATED);
 
 
-}
+}}
 

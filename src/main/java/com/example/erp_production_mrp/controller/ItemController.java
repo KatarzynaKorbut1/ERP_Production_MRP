@@ -1,25 +1,22 @@
 package com.example.erp_production_mrp.controller;
 
+import com.example.erp_production_mrp.controller.dto.ItemDTO;
 import com.example.erp_production_mrp.model.Item;
 import com.example.erp_production_mrp.services.ItemService;
-import com.example.erp_production_mrp.services.ItemStructureService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 @Slf4j
 public class ItemController {
 
-    @Autowired
-    private ItemStructureService itemStructureService;
+
     private final ItemService itemService;
 
     ArrayList<Item> items;
@@ -57,27 +54,10 @@ public class ItemController {
         return HttpStatus.NO_CONTENT;
     }
 
-//    @GetMapping("/itemStructures/{itemId}")
-//    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
-//        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
-//        if (itemStructureDTO == null) {
-//            // Obsłuż brak znalezienia przedmiotu
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(itemStructureDTO);
+//    @GetMapping("/itemDTO")
+//    public ResponseEntity<List<ItemDTO>> itemDTOResponseEntity(){
+//        return new ResponseEntity<>(itemService.getAllItemDTO(), HttpStatus.OK);
 //    }
-
-//        @GetMapping("/itemStructures/{itemId}")
-//    public ResponseEntity<ItemStructureDTO> getItemWithStructures(@PathVariable Long itemId) {
-//        ItemStructureDTO itemStructureDTO = itemStructureService.getItemWithStructures(itemId);
-//        if (itemStructureDTO == null) {
-//            // Obsłuż brak znalezienia przedmiotu
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(itemStructureDTO);
-//    }
-//
-
 
 
 }

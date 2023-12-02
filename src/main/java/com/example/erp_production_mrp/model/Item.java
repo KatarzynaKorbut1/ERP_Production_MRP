@@ -79,7 +79,8 @@ public class Item{
         return structures;
     }
 
-    public void setStructures(List<Structure> structures) {
-        this.structures = structures;
-    }
+//    public void setStructures(List<Structure> structures) {
+//        this.structures = structures;
+//    }
+
 }

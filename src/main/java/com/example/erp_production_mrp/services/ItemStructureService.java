@@ -80,7 +80,6 @@ public class ItemStructureService {
                         .map(ItemStructureService::mapItemToDtos)
                         .collect(Collectors.toList());
 
-
 //                .map(item -> ItemStructureDTO.ItemStructureDTOBuilder.anItemStructureDTO()
 //                        .withIndexName(item.getIndexName())
 //                        .withIndexDescription(item.getIndexDescription())
